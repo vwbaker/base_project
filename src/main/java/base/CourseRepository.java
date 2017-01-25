@@ -11,19 +11,20 @@
  * specific language governing permissions and limitations under the License.
  */
 
-package sample.web.ui;
+package base;
 
-/**
- * @author Rob Winch
- */
-public interface MessageRepository {
+import java.util.List;
 
-	Iterable<Message> findAll();
+public interface CourseRepository {
 
-	Message save(Message message);
+	Iterable<Course> findAll();
 
-	Message findMessage(Long id);
+	Course save(Course course);
 
-	void deleteMessage(Long id);
+	List<Course> save(List<Course> courses);
+
+	Course findCourse(Long id);
+
+	Course deleteCourse(Long id);
 
 }

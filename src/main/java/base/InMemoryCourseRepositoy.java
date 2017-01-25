@@ -14,45 +14,52 @@
  * limitations under the License.
  */
 
-package sample.web.ui;
+package base;
 
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicLong;
 
-/**
- * @author Dave Syer
- */
-public class InMemoryMessageRepository implements MessageRepository {
+public class InMemoryCourseRepositoy implements CourseRepository {
 
 	private static AtomicLong counter = new AtomicLong();
 
-	private final ConcurrentMap<Long, Message> messages = new ConcurrentHashMap<Long, Message>();
+	private final ConcurrentMap<Long, Course> courses = new ConcurrentHashMap<Long, Course>();
 
 	@Override
-	public Iterable<Message> findAll() {
-		return this.messages.values();
+	public Iterable<Course> findAll() {
+		return this.courses.values();
 	}
 
 	@Override
-	public Message save(Message message) {
-		Long id = message.getId();
+	public Course save(Course course) {
+		Long id = course.getId();
 		if (id == null) {
 			id = counter.incrementAndGet();
-			message.setId(id);
+			course.setId(id);
 		}
-		this.messages.put(id, message);
-		return message;
+		this.courses.put(id, course);
+
+		return course;
 	}
 
 	@Override
-	public Message findMessage(Long id) {
-		return this.messages.get(id);
+	public List<Course> save(List<Course> courses) {
+		for (Course c : courses) {
+			save(c);
+		}
+		return courses;
 	}
 
 	@Override
-	public void deleteMessage(Long id) {
-		this.messages.remove(id);
+	public Course findCourse(Long id) {
+		return this.courses.get(id);
+	}
+
+	@Override
+	public Course deleteCourse(Long id) {
+		return this.courses.remove(id);
 	}
 
 }
