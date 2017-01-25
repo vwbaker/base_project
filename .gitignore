@@ -56,3 +56,6 @@ fabric.properties
 
 .idea/
 build/
+.gradle/*
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
