@@ -1,6 +1,9 @@
 language: java
 # By default TravisCi will call gradlew check'
 # script:
+script:
+  - ./gradlew clean build -i --continue
+
 notifications:
   # Email notifications are disabled to not annoy anybody.
   # See http://about.travis-ci.org/docs/user/build-configuration/ to learn more
