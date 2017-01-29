@@ -3,4 +3,6 @@ Heroku app url: https://cp-fellowship.herokuapp.com/
 
 This Spring Boot application is rebuilt and deployed on Heroku with every new commit to this branch.  
   
-To build and run locally run the following command: ./gradlew clean build && java -jar build/libs/gs-spring-boot-0.1.0.jar
+To build and run locally run the following command: ./gradlew clean build && java -jar build/libs/gs-spring-boot-0.1.0.jar or mvn clean install && java -jar target/gs-spring-boot-0.1.0.jar
+
+when running locally, then the app url is http://localhost:8080/
