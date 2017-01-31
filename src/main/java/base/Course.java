@@ -3,6 +3,8 @@ package base;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Course implements Serializable {
 
@@ -11,13 +13,22 @@ public class Course implements Serializable {
     private String prefix;
     private String number;
     private String title;
-
-    public Course (){};
+    private ArrayList<String> comments;
+    public Course (){}
 
     public Course(String prefix, String number, String title) {
         this.prefix = prefix;
         this.number = number;
         this.title = title;
+        this.comments = new ArrayList<String>();
+    }
+
+    public void addComment(String comment){
+        comments.add(comment);
+    }
+
+    public List getComments(){
+        return this.comments;
     }
 
     public Long getId() {

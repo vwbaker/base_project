@@ -50,4 +50,15 @@ public class CourseApiController {
         }
     }
 
+    @PutMapping("{id}/comments/")
+    public Course postComment(@PathVariable long id, @RequestBody String comment){
+        Course course = courseRepository.findCourse(id);
+        if (course == null) {
+            return null;
+        } else {
+            course.addComment(comment);
+            return courseRepository.save(course);
+        }
+    }
+
 }
