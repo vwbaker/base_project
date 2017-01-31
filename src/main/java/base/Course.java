@@ -13,18 +13,22 @@ public class Course implements Serializable {
     private String prefix;
     private String number;
     private String title;
-    private ArrayList<String> comments;
+    private ArrayList<Comment> comments;
     public Course (){}
 
     public Course(String prefix, String number, String title) {
         this.prefix = prefix;
         this.number = number;
         this.title = title;
-        this.comments = new ArrayList<String>();
+        this.comments = new ArrayList<Comment>();
     }
 
-    public void addComment(String comment){
+    public void addComment(Comment comment){
         comments.add(comment);
+    }
+
+    public void removeComment(long commentIndex){
+        this.comments.remove((int) commentIndex);
     }
 
     public List getComments(){

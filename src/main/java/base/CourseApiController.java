@@ -50,13 +50,28 @@ public class CourseApiController {
         }
     }
 
-    @PutMapping("{id}/comments/")
-    public Course postComment(@PathVariable long id, @RequestBody String comment){
+    @PutMapping("{id}/comments")
+    public Course postComment(@PathVariable long id, @RequestBody Comment comment){
         Course course = courseRepository.findCourse(id);
         if (course == null) {
+            System.out.println("Null");
             return null;
         } else {
             course.addComment(comment);
+            System.out.println("Comment: " + comment.getComment());
+            return courseRepository.save(course);
+        }
+    }
+
+    @PutMapping("{id}/comments/remove/{commentId}")
+    public Course deleteComment(@PathVariable long id, @PathVariable long commentId){
+        Course course = courseRepository.findCourse(id);
+        if (course == null) {
+            System.out.println("Null");
+            return null;
+        } else {
+
+            course.removeComment(commentId);
             return courseRepository.save(course);
         }
     }
