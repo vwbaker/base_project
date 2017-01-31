@@ -12,6 +12,11 @@ public class Application {
     public CourseRepository courseRepository() {
         return new InMemoryCourseRepositoy();
     }
+    
+    @Bean
+    public PostRepository postRepository() {
+      return new InMemoryPostRepository();
+    }
 
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(Application.class, args);
