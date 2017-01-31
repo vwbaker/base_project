@@ -50,7 +50,7 @@ public class CourseApiController {
         }
     }
 
-    @PutMapping("{id}/comments")
+    @PostMapping("{id}/comments")
     public Course postComment(@PathVariable long id, @RequestBody Comment comment){
         Course course = courseRepository.findCourse(id);
         if (course == null) {
@@ -63,7 +63,7 @@ public class CourseApiController {
         }
     }
 
-    @PutMapping("{id}/comments/remove/{commentId}")
+    @DeleteMapping("{id}/comments/remove/{commentId}")
     public Course deleteComment(@PathVariable long id, @PathVariable long commentId){
         Course course = courseRepository.findCourse(id);
         if (course == null) {
