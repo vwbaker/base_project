@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/course")
@@ -62,6 +63,42 @@ public class CourseApiController {
             return courseRepository.save(course);
         }
     }
+
+    @PutMapping("{id}/comments/{commentId}")
+    public Course putComment(@PathVariable long id, @PathVariable long commentId, @RequestBody Comment comment){
+        Course course = courseRepository.findCourse(id);
+        if (course == null) {
+            System.out.println("Null");
+            return null;
+        } else {
+            course.putComment( (int) commentId, comment);
+            System.out.println("Comment: " + comment.getComment());
+            return courseRepository.save(course);
+        }
+    }
+
+    @GetMapping("{id}/comments")
+    public List<Comment> getComments(@PathVariable long id){
+        Course course = courseRepository.findCourse(id);
+        if (course == null) {
+            System.out.println("Null");
+            return null;
+        } else {
+            return courseRepository.save(course).getComments();
+        }
+    }
+
+    @GetMapping("{id}/comments/{commentId}")
+    public Comment getComment(@PathVariable long id, @PathVariable long commentId){
+        Course course = courseRepository.findCourse(id);
+        if (course == null) {
+            System.out.println("Null");
+            return null;
+        } else {
+            return courseRepository.save(course).getComments().get((int)commentId);
+        }
+    }
+
 
     @DeleteMapping("{id}/comments/remove/{commentId}")
     public Course deleteComment(@PathVariable long id, @PathVariable long commentId){

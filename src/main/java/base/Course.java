@@ -27,11 +27,15 @@ public class Course implements Serializable {
         comments.add(comment);
     }
 
+    public void putComment(long commentId, Comment newComment){
+        this.comments.set((int)commentId, newComment);
+    }
+
     public void removeComment(long commentIndex){
         this.comments.remove((int) commentIndex);
     }
 
-    public List getComments(){
+    public List<Comment> getComments(){
         return this.comments;
     }
 
