@@ -1,7 +1,5 @@
 package base;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import java.io.Serializable;
 
 public class Course implements Serializable {
