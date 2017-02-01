@@ -11,7 +11,9 @@
  * specific language governing permissions and limitations under the License.
  */
 
-package base;
+package base.data;
+
+import base.model.Course;
 
 import java.util.List;
 
@@ -23,8 +25,8 @@ public interface CourseRepository {
 
 	List<Course> save(List<Course> courses);
 
-	Course findCourse(Long id);
+	Course find(Long id);
 
-	Course deleteCourse(Long id);
+	Course delete(Long id);
 
 }

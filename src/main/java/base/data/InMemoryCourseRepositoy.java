@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package base;
+package base.data;
+
+import base.model.Course;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -53,12 +55,12 @@ public class InMemoryCourseRepositoy implements CourseRepository {
 	}
 
 	@Override
-	public Course findCourse(Long id) {
+	public Course find(Long id) {
 		return this.courses.get(id);
 	}
 
 	@Override
-	public Course deleteCourse(Long id) {
+	public Course delete(Long id) {
 		return this.courses.remove(id);
 	}
 

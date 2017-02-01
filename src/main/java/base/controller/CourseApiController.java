@@ -1,6 +1,7 @@
-package base;
+package base.controller;
 
-import org.springframework.stereotype.Controller;
+import base.data.CourseRepository;
+import base.model.Course;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -16,15 +17,15 @@ public class CourseApiController {
     }
 
     @GetMapping
-    public ArrayList<Course> listAll() {
+    public ArrayList<Course> readAll() {
         ArrayList<Course> courses = new ArrayList<>();
         courseRepository.findAll().forEach(course -> courses.add(course));
         return courses;
     }
 
     @GetMapping("{id}")
-    public Course find(@PathVariable Long id) {
-        return courseRepository.findCourse(id);
+    public Course read(@PathVariable Long id) {
+        return courseRepository.find(id);
     }
 
     @PostMapping
@@ -33,13 +34,13 @@ public class CourseApiController {
     }
 
     @DeleteMapping("{id}")
-    public Course delete(@PathVariable Long id) {
-        return courseRepository.deleteCourse(id);
+    public Course destroy(@PathVariable Long id) {
+        return courseRepository.delete(id);
     }
 
     @PutMapping("{id}")
     public Course update(@PathVariable Long id, @RequestBody Course input) {
-        Course course = courseRepository.findCourse(id);
+        Course course = courseRepository.find(id);
         if (course == null) {
             return null;
         } else {
