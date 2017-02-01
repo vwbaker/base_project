@@ -2,6 +2,8 @@ package base;
 
 import base.data.CourseRepository;
 import base.data.InMemoryCourseRepositoy;
+import base.data.InMemoryPostRepository;
+import base.data.PostRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -13,6 +15,11 @@ public class Application {
     @Bean
     public CourseRepository courseRepository() {
         return new InMemoryCourseRepositoy();
+    }
+
+    @Bean
+    public PostRepository postRepository() {
+        return new InMemoryPostRepository();
     }
 
     public static void main(String[] args) {
