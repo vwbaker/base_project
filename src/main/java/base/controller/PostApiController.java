@@ -47,7 +47,7 @@ public class PostApiController {
         if (post == null) {
             return null;
         } else {
-            post.setPost(post.getPost());
+            post.setPost(input.getPost());
             return postRepository.save(post);
         }
     }
