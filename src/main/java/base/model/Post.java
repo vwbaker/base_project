@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 public class Post implements Serializable {
 
-    private long id;
+    private Long id;
     private String title;
     private String post;
 
