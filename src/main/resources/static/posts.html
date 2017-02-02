@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html ng-app="PostApp">
+<head>
+<title>Post App</title>
+<meta charset="utf-8">
+
+<script
+        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script
+        src="http://angular-ui.github.com/bootstrap/ui-bootstrap-tpls-0.1.0.js"></script>
+<link
+        href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css"
+        rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="table.css" />
+
+
+<script>
+var app = angular.module('PostApp', ['ui.bootstrap']);
+
+        function loadPosts ($scope, $http){
+                $http({
+                 method : 'GET',
+                 //url : 'http://test-api-308.herokuapp.com/post'
+		 url : 'http://localhost:8080/post'
+                }).then(function (response) {
+                         $scope.posts = response.data;
+                });
+        }
+
+app.controller('PostCtrl', function ($scope, $http, $dialog) {
+        
+        loadPosts($scope, $http);
+  
+                  
+        var addDialogOptions = {
+        	controller: 'AddPostCtrl',
+        	templateUrl: './postAdd.html'
+        };
+        
+        $scope.add = function(post){
+        	$dialog.dialog(angular.extend(addDialogOptions, {})).open()
+        	.then(function () {
+                	loadPosts($scope, $http);
+                });
+        };
+        
+        var editDialogOptions = {
+            controller: 'EditPostCtrl',
+            templateUrl: './postEdit.html',
+        };
+
+        $scope.edit = function(post) {
+                var postToEdit = post;
+        	$dialog.dialog(angular.extend(editDialogOptions, {resolve: {post: angular.copy(postToEdit)}})).open().then(function () {
+		loadPosts($scope, $http);
+        	});
+	};
+
+	var deleteDialogOptions = {
+		controller: 'DeletePostCtrl',
+		templateUrl: './postDelete.html',
+	};
+
+	$scope.delete = function(post) {
+                var deleteRequest = {
+                        method: 'DELETE',
+                        url: 'http://localhost:8080/post/' + post.id,
+                }
+                $http(deleteRequest).then(function(response) {
+			loadPosts($scope, $http);
+                });
+        
+	}
+        
+});
+app.controller('EditPostCtrl', function ($scope, $http, post, dialog) {
+  
+        $scope.post = post;
+
+        $scope.save = function($post) {
+            var putRequest = {
+        		method : 'PUT',
+        		url : 'http://localhost:8080/post/'+ $scope.post.id ,
+        		data: {
+                                messageBody: $scope.post.messageBody
+                        }
+           }  
+                
+                $http(putRequest).then(function (response) {
+                    $scope.post = response.data;
+                });
+                //todo handle error
+        $scope.close();
+        };
+  
+        $scope.close = function(){
+                loadPosts($scope, $http);
+        dialog.close();
+        };
+});
+
+
+app.controller('AddPostCtrl', function($scope, $http, dialog){
+  
+        $scope.save = function(post) {
+		var postRequest = {
+			method: 'POST',
+			url: 'http://localhost:8080/post',
+			data: {
+				messageBody: $scope.post.messageBody
+			}
+		}
+		$http(postRequest).then(function(response) {
+			$scope.post = response.data;
+		});
+        
+        	$scope.close();
+        };
+  
+        $scope.close = function(){
+		loadPosts($scope, $http);
+        	dialog.close(undefined);
+        };
+});
+
+app.controller('DeletePostCtrl', function($scope, post) {
+});
+
+
+</script>
+</head>
+<body>
+        <div ng-controller="PostCtrl">
+                <h3>Posts:</h3>
+                <table>
+                        <tr>
+                                <td colspan=1>&nbsp;</td>
+                                <td><button ng-click="add()">add post</button></td>
+                        </tr>
+                        <tr ng-repeat="p in posts">
+                                <td>{{p.messageBody}}</td>
+                                <td><button ng-click="edit(p)">edit</button>
+                                        <button ng-click="delete(p)">delete</button></td>
+                        </tr>
+                </table>
+        </div>
+</body>
+</html>
