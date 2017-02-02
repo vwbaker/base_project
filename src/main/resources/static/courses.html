@@ -20,8 +20,8 @@ var app = angular.module('CourseApp', ['ui.bootstrap']);
 	function loadCourses ($scope, $http){
 		$http({
        		 method : 'GET',
-       		 //url : 'http://alpha-leader.herokuapp.com/course'
-       		   url : 'http://localhost:8080/course',
+       		 url : 'http://alpha-leader.herokuapp.com/course'
+       		 //  url : 'http://localhost:8080/course',
     		}).then(function (response) {
      			 $scope.courses = response.data;
   		});
@@ -71,8 +71,8 @@ app.controller('EditCourseCtrl', function ($scope, $http, course, dialog) {
   	$scope.save = function($course) {
   	    var putRequest = {
     	method : 'PUT',
-       	//url : 'http://alpha-leader.herokuapp.com/course/'+ $scope.course.id ,
-       	url : 'http://localhost:8080/course/'+ $scope.course.id ,
+       	url : 'http://alpha-leader.herokuapp.com/course/'+ $scope.course.id ,
+       	//url : 'http://localhost:8080/course/'+ $scope.course.id ,
        	data: {
   				prefix: $scope.course.prefix,
   				number: $scope.course.number,
@@ -127,8 +127,8 @@ app.controller('AddCourseCtrl', function($scope, $http, dialog){
   	$scope.save = function(course) {
         var postRequest = {
             method : 'POST',
-            //url : 'http://alpha-leader.herokuapp.com/course/'+ $scope.course.id ,
-            url : 'http://localhost:8080/course/',
+            url : 'http://alpha-leader.herokuapp.com/course/',
+            //url : 'http://localhost:8080/course/',
             data: {
                 prefix: $scope.course.prefix,
                 number: $scope.course.number,
