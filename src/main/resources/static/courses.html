@@ -65,7 +65,7 @@ app.controller('CourseCtrl', function ($scope, $http, $dialog) {
     $scope.delete = function(course){
 		var deleteRequest = {
 			method : 'DELETE',
-			url : 'http://cp-alphaleader.herokuapp.com/course/'+ $scope.course.id //,
+			url : 'http://cp-alphaleader.herokuapp.com/course/' + course.id
 			//url : 'http://localhost:8080/course/'+ $scope.course.id ,
 		};
 
