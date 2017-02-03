@@ -62,12 +62,20 @@ app.controller('CourseCtrl', function ($scope, $http, $dialog) {
         }) ;
   	};
 
-/*    $scope.delete = function(course){
-        $dialog.dialog(angular.extend(editDialogOptions, {resolve: {course: angular.copy(course)}})).
-        open().then(function (){
-            loadCourses($scope, $http);
-        }) ;
-    };*/
+    $scope.delete = function(course){
+		var deleteRequest = {
+			method : 'DELETE',
+			url : 'http://cp-alphaleader.herokuapp.com/course/'+ $scope.course.id //,
+			//url : 'http://localhost:8080/course/'+ $scope.course.id ,
+		};
+
+		$http(deleteRequest).then(function (){
+			loadCourses($scope, $http);
+		});
+		//todo handle error
+
+
+    };
   	
 });
 
@@ -133,8 +141,8 @@ app.controller('AddCourseCtrl', function($scope, $http, dialog){
   	};
 });
 
-app.controller('DeleteCourseCtrl', function($scope, course){
-/* $scope.course = course;
+/*app.controller('DeleteCourseCtrl', function($scope, course){
+ $scope.course = course;
 
     $scope.save = function($course) {
         var deleteRequest = {
@@ -156,8 +164,8 @@ app.controller('DeleteCourseCtrl', function($scope, course){
             $scope.courses = response;
         });
         dialog.close();
-    };*/
-});
+    };
+});*/
 
 </script>
 </head>
