@@ -23,7 +23,7 @@ app.controller('myCtrl', function($scope, $http) {
   $http({
     method : "GET",
     //url : "http://localhost:8080/course"
-      url : "http://alpha-leader.herokuapp.com/course"
+      url : "http://cp-alphaleader.herokuapp.com/course"
   }).then(function mySucces(response) {
       $scope.content = response.data;
       $scope.statuscode = response.status;
