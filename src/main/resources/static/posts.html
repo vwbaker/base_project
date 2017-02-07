@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html ng-app="FellowshipApp">
+<head>
+<title>The Fellowship</title>
+<meta charset="utf-8">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script
+	src="http://angular-ui.github.com/bootstrap/ui-bootstrap-tpls-0.1.0.js"></script>
+<link
+	href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css"
+	rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/styles.css" />
+<link rel="stylesheet" type="text/css" href="table.css" />
+
+
+<script>
+var app = angular.module('FellowshipApp', ['ui.bootstrap']);
+
+function loadPosts ($scope, $http){
+    $http({
+    	method : 'GET',
+    	//url : 'https://cp-fellowship.herokuapp.com/post/'
+    	url : 'http://localhost:8080/post'
+    })
+	.then(function (response) {
+		$scope.posts = response.data;
+	});
+}
+
+app.controller('MainFeedCtrl', function ($scope, $http, $dialog) {
+  	
+  	loadPosts($scope, $http);
+  	
+  	$scope.load = function(){
+  		loadPosts($scope, $http);
+  	}
+  	
+  	$scope.add = function(){
+  		var addDialogOptions = {
+	    	controller: 'CreatePostCtrl',
+	    	templateUrl: './createPost.html'
+	  	};
+  		
+    	$dialog.dialog(angular.extend(addDialogOptions, {})).open()
+    	.then(function (){
+			loadPosts($scope, $http);
+        });
+  	};
+
+  	$scope.edit = function(post){
+  		var editDialogOptions = {
+		    controller: 'EditPostCtrl',
+		    templateUrl: './editPost.html',
+		};
+  		
+   	 	var postToEdit = post;
+    	$dialog.dialog(angular.extend(editDialogOptions, 
+    			{resolve: {post: angular.copy(postToEdit)}})).open()
+    	.then(function (){
+    	    loadPosts($scope, $http);
+        });
+  	};
+
+    $scope.delete = function(post){
+		var deleteRequest = {
+        	method : 'DELETE',
+        	//url : 'https://cp-fellowship.herokuapp.com/post/' + post.id
+        	url : 'http://localhost:8080/post/' + post.id
+		}
+		
+		$http(deleteRequest)
+		.then(function (response) {
+			//console.log(response.data);
+			loadPosts($scope, $http);
+		});
+	};
+});
+
+app.controller('CreatePostCtrl', function($scope, $http, dialog){
+
+    $scope.save = function() {
+        var postRequest = {
+    		method : 'POST',
+            //url : 'https://cp-fellowship.herokuapp.com/post/',
+            url : 'https://localhost:8080/post/',
+            data: {
+              	message: $scope.post.message
+            }
+        }  
+        
+      	$http(postRequest).then(function (response) {
+    		$scope.post = response.data;
+    	});
+    	//todo handle error
+      	$scope.close();
+    };
+    
+    $scope.close = function(){
+      	loadPosts($scope, $http);
+    	dialog.close();
+    };
+});
+
+app.controller('EditPostCtrl', function ($scope, $http, post, dialog) {
+  
+	$scope.post = post;
+
+  	$scope.save = function($post) {
+        var putRequest = {
+        	method : 'PUT',
+        	//url : 'https://cp-fellowship.herokuapp.com/post/'+ $scope.post.id ,
+        	url : 'https://localhost:8080/post/'+ $scope.post.id ,
+        	data: {
+        		message: $scope.post.message
+			}
+        }
+        
+        $http(putRequest).then(function (response) {
+            $scope.post = response.data;
+        });
+        //todo handle error
+        $scope.close();
+  	};
+  
+  	$scope.close = function(){
+  		loadPosts($scope, $http);
+    	dialog.close();
+  	};
+});
+
+app.controller('DeleteCourseCtrl', function($scope, post){
+//delete
+//look at line 59 
+});
+</script>
+</head>
+<body>
+	<div ng-controller="MainFeedCtrl">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4">
+					<h1>
+						Welcome <small>CalPoly</small>
+					</h1>
+				</div>
+				<div class="col-sm-offset-4 col-sm-4">
+					<button ng-click="load()" class="glyphicon glyphicon-refresh"></button>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-10"></div>
+				<div class="col-sm-2">
+					<!-- <button ng-click="add()">add</button> -->
+					<button class="btn" data-toggle="modal"
+						data-target="#createPostModal">add</button>
+
+					<!-- Modal -->
+					<div class="modal fade" id="createPostModal" role="dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h1>Create Post</h1>
+							</div>
+							<div class="modal-body">
+								<textarea ng-model="post.message"></textarea>
+							</div>
+							<div class="modal-footer">
+								<button ng-click="save(post)">Save</button>
+								<button ng-click="close()">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-12">
+					<h3>All posts</h3>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div ng-repeat="p in posts">
+					<div class="row">
+						<div class="col-sm-2">
+							<p>{{p.timestamp}}
+						</div>
+						<div class="col-sm-8">
+							<p>{{p.message}}
+						</div>
+						<div class="col-sm-2">
+							<button ng-click="edit(p)">edit</button>
+							<button ng-click="delete(p)">delete</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
