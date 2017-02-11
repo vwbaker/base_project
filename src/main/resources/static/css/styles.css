@@ -40,3 +40,17 @@ body {
     padding-top: 1em;
     padding-bottom: 1em;
 }
+
+/* SO solution */
+.pull-down {
+    font-size: 0;
+}
+.pull-down > * {
+    float: none;
+    display: inline-block;
+    font-size: 14px; /* if using LESS it's quicker to just use @font-size-base */
+}
+.pull-down > *:last-child {
+    vertical-align: bottom;
+    padding-bottom: 5px;
+}

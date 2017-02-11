@@ -1,51 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>The Fellowship</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>The Fellowship</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/styles.css" />
-    <link rel="stylesheet" type="text/css" href="table.css" />
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css" />
+	<link rel="stylesheet" type="text/css" href="table.css" />
+
 </head>
 <body>
-  <div class="container">
-    
-    <div class="welcome-header">
-      <div class="row">
-        <div class="col-sm-6 col-sm-offset-3">
-          <h2 class="header">Welcome to The Fellowship!</h2>
-        </div>
-      </div>
-    </div>
+	<nav class="navbar navbar-default">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">
+					<img src="img/logo.png">
+				</a>
+				<a href="#" class="navbar-text"><strong>The Fellowship</strong></a>
+			</div>
+			<!-- <div class="navbar-collapse collapse"> -->
+			<div class="collapse navbar-collapse navHeaderCollapse" id="">
+				<ul class="nav navbar-nav navbar-right">
+				<!-- <ul class="nav navbar-nav"> -->
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>
+							Profile<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#"><span class="glyphicon glyphicon-education"></span>Projects</a></li>
+							<li><a href="#" class=""><span class="glyphicon glyphicon-inbox"></span>Messages</a></li>
+							<li class="divider"></li>
+							<li><a href="#"><span class="glyphicon glyphicon-cog"></span>Account Settings</a></li>
+							<li><a href="#"><span class="glyphicon glyphicon-off"></span> Sign Out</a></li>
+						</ul>
+					</li>
+					<li><a href="#" class=""><span class="glyphicon glyphicon-globe"></span>Notifications</a></li>
+					<li><a href="#" class=""><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
 
-  </div>
-  <div class="container" id="mainPage">
 
-    <div class="form-group row">
-      <div class="col-sm-6 col-sm-offset-3">
-        <label for="emailInput" class="col-form-label">Email:</label>
-        <input type="email" class="form-control" id="emailInput">
-      </div>
-    </div>
+		<div class="row well-sm">
 
-    <div class="form-group row">
-      <div class="col-sm-6 col-sm-offset-3">
-        <label for="passwordInput" class="col-form-label">Password:</label>
-        <input type="password" class="form-control" id="passwordInput">
-      </div>
-    </div>
+			<div class="col-sm-4 col-xs-12">
+				<h2>Welcome <small>to the Fellowship</small></h2>
+			</div>
 
-    <div class="row">
-      <div class="col-sm-6 col-sm-offset-3 pull-left">
-        <button class="btn" onclick="redirect()">Sign in</button>
-      </div>
-    </div>
+			<div class="col-sm-8 col-xs-12">
 
-  </div>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+				<form class="form-inline pull-right">
+					<label class="small">Username:</label>
+					<input id="username" type="text" class="form-control input-sm">
+
+					<label class="small">Password:</label>
+					<input id="password" type="text" class="form-control input-sm">
+
+					<button id="submitLogin" type="submit" class="btn btn-primary btn-xs">Submit</button>
+				</form>
+
+			</div>		
+		</div>
+
+		<div class="row">
+
+			<div class="col-md-3 col-xs-12">
+				<div class="input-group input-group-sm">
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-search"></span>
+					</span>
+					<input  id="searchBar" type="text" class="form-control input-sm">
+				</div>
+				<br>
+				<div id="filterGroup" class="list-group">
+					<button href="#" class="list-group-item disabled">
+						<span class="glyphicon glyphicon-book"></span>
+						<span class="">  Filters</span>
+					</button>
+					<button href="#" class="list-group-item">Professor</button>
+					<button href="#" class="list-group-item">Student</button>
+					<button href="#" class="list-group-item">Engineering</button>
+					<button href="#" class="list-group-item">Business</button>
+				</div>
+			</div>
+
+			<div class="col-md-9 col-xs-12">
+
+				<div class="well well-sm hidden-sm-down">
+					<div class="form-group">
+						<label for="comment"><h4>Create new post</h4></label>
+						<textarea  id="postTextarea" class="form-control" rows="5"></textarea>
+						<button id="postSubmit" class="btn btn-primary" style="margin-top: 1em">Submit</button>
+					</div>
+				</div>
+
+				<div class="well well-sm">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="well">
+								<h4>Test Header</h4>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+								Nulla fringilla augue ut lacus ullamcorper consequat. Cras a lacus aliquet, 
+								dignissim massa sit amet, luctus erat. Phasellus vitae lacus enim. 
+								Vestibulum non massa elementum, tincidunt arcu finibus, elementum augue. 
+							</div>
+						</div>   
+						<div class="col-xs-12">
+							<div class="well">
+								<h4>Test Header</h4>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+								Nulla fringilla augue ut lacus ullamcorper consequat. Cras a lacus aliquet, 
+								dignissim massa sit amet, luctus erat. Phasellus vitae lacus enim. 
+								Vestibulum non massa elementum, tincidunt arcu finibus, elementum augue. 
+							</div>
+						</div>   
+						<div class="col-xs-12">
+							<div class="well">
+								<h4>Test Header</h4>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+								Nulla fringilla augue ut lacus ullamcorper consequat. Cras a lacus aliquet, 
+								dignissim massa sit amet, luctus erat. Phasellus vitae lacus enim. 
+								Vestibulum non massa elementum, tincidunt arcu finibus, elementum augue. 
+							</div>
+						</div>   
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
