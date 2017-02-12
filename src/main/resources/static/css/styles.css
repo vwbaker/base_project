@@ -41,16 +41,16 @@ body {
     padding-bottom: 1em;
 }
 
-/* SO solution */
-.pull-down {
-    font-size: 0;
+.carousel {
+    margin-top: -2em;
 }
-.pull-down > * {
-    float: none;
-    display: inline-block;
-    font-size: 14px; /* if using LESS it's quicker to just use @font-size-base */
-}
-.pull-down > *:last-child {
-    vertical-align: bottom;
-    padding-bottom: 5px;
+
+.carousel-caption {
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: initial;
+    background-color: white;
+    color: black;
+    border-style: round;
+    border-radius: 2px;
 }
