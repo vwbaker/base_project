@@ -36,6 +36,13 @@ public class PostApiController {
     public Post delete(@PathVariable Long id) {
         return postRepository.deletePost(id);
     }
+    
+    @DeleteMapping
+    public void deleteAll() {
+    	for (Post post : postRepository.findAll()) {
+    		postRepository.deletePost(post.getId());
+    	}
+    }
 
     @PutMapping("{id}")
     public Post update(@PathVariable Long id, @RequestBody Post input) {

@@ -16,16 +16,19 @@
 
 package base;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class InMemoryPostRepositoy implements PostRepository {
 
 	private static AtomicLong counter = new AtomicLong();
 
-	private final ConcurrentMap<Long, Post> posts = new ConcurrentHashMap<Long, Post>();
+	// changed to a concurrent sorted hash
+	private final ConcurrentMap<Long, Post> posts = new ConcurrentSkipListMap<Long, Post>();
 
 	@Override
 	public Iterable<Post> findAll() {

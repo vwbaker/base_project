@@ -11,6 +11,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'application'
 
 jar {
     baseName = 'gs-spring-boot'
@@ -35,5 +36,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-actuator")
     // end::actuator[]
     testCompile("junit:junit")
+    compile("org.springframework.boot:spring-boot-devtools")
 }
 
+mainClassName = 'base/Application'

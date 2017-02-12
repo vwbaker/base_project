@@ -29,7 +29,7 @@ public class DatabaseLoader implements CommandLineRunner {
         this.repository.save(sampleCourseList);
 
         ArrayList<Post> samplePostList = new ArrayList<>();
-        samplePostList.add(new Post("Testing if this works!!!!"));
+        samplePostList.add(new Post("Default post"));
 
         this.postRepository.save(samplePostList);
 
