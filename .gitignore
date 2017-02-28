@@ -61,3 +61,4 @@ build/
 !gradle/wrapper/gradle-wrapper.properties
 /bin/
 /.gradle/
+*.iml
