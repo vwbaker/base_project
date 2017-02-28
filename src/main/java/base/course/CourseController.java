@@ -1,17 +1,18 @@
-package base;
+package base.controller;
 
-import org.springframework.stereotype.Controller;
+import base.data.CourseRepository;
+import base.data.model.Course;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/course")
-public class CourseApiController {
+public class CourseController {
 
     private final CourseRepository courseRepository;
 
-    public CourseApiController(CourseRepository courseRepository) {
+    public CourseController(CourseRepository courseRepository) {
         this.courseRepository = courseRepository;
     }
 

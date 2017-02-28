@@ -11,7 +11,9 @@
  * specific language governing permissions and limitations under the License.
  */
 
-package base;
+package base.data;
+
+import base.data.model.Course;
 
 import java.util.List;
 
