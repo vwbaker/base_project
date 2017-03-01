@@ -1,7 +1,6 @@
-package base.controller;
+package base.course;
 
-import base.data.CourseRepository;
-import base.data.model.Course;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -10,11 +9,8 @@ import java.util.ArrayList;
 @RequestMapping("/course")
 public class CourseController {
 
-    private final CourseRepository courseRepository;
-
-    public CourseController(CourseRepository courseRepository) {
-        this.courseRepository = courseRepository;
-    }
+    @Autowired
+    private CourseRepository courseRepository;
 
     @GetMapping
     public ArrayList<Course> listAll() {
@@ -25,7 +21,7 @@ public class CourseController {
 
     @GetMapping("{id}")
     public Course find(@PathVariable Long id) {
-        return courseRepository.findCourse(id);
+        return courseRepository.findOne(id);
     }
 
     @PostMapping
@@ -34,13 +30,13 @@ public class CourseController {
     }
 
     @DeleteMapping("{id}")
-    public Course delete(@PathVariable Long id) {
-        return courseRepository.deleteCourse(id);
+    public void delete(@PathVariable Long id) {
+        courseRepository.delete(id);
     }
 
     @PutMapping("{id}")
     public Course update(@PathVariable Long id, @RequestBody Course input) {
-        Course course = courseRepository.findCourse(id);
+        Course course = courseRepository.findOne(id);
         if (course == null) {
             return null;
         } else {
