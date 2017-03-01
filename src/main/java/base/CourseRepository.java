@@ -13,18 +13,8 @@
 
 package base;
 
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
-public interface CourseRepository {
-
-	Iterable<Course> findAll();
-
-	Course save(Course course);
-
-	List<Course> save(List<Course> courses);
-
-	Course findCourse(Long id);
-
-	Course deleteCourse(Long id);
+public interface CourseRepository extends CrudRepository<Course, Long> {
 
 }
