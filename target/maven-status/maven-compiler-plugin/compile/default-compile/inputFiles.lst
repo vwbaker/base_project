@@ -1,11 +1,9 @@
-/Users/michellegu/Desktop/CPE/cpe308/base_project/src/main/java/base/CourseApiController.java
-/Users/michellegu/Desktop/CPE/cpe308/base_project/src/main/java/base/InMemoryPostRepositoy.java
+/Users/michellegu/Desktop/CPE/cpe308/base_project/src/main/java/base/NewsfeedPost.java
+/Users/michellegu/Desktop/CPE/cpe308/base_project/src/main/java/base/ContentDatabase.java
+/Users/michellegu/Desktop/CPE/cpe308/base_project/src/main/java/base/Comment.java
+/Users/michellegu/Desktop/CPE/cpe308/base_project/src/main/java/base/User.java
+/Users/michellegu/Desktop/CPE/cpe308/base_project/src/main/java/base/Controller.java
 /Users/michellegu/Desktop/CPE/cpe308/base_project/src/main/java/base/Application.java
 /Users/michellegu/Desktop/CPE/cpe308/base_project/src/main/java/base/Post.java
-/Users/michellegu/Desktop/CPE/cpe308/base_project/src/main/java/base/PostApiController.java
-/Users/michellegu/Desktop/CPE/cpe308/base_project/src/main/java/base/PostRepository.java
-/Users/michellegu/Desktop/CPE/cpe308/base_project/src/main/java/base/Course.java
-/Users/michellegu/Desktop/CPE/cpe308/base_project/src/main/java/base/CourseRepository.java
-/Users/michellegu/Desktop/CPE/cpe308/base_project/src/main/java/base/DatabaseLoader.java
+/Users/michellegu/Desktop/CPE/cpe308/base_project/src/main/java/base/ContentController.java
 /Users/michellegu/Desktop/CPE/cpe308/base_project/src/main/java/base/HomeController.java
-/Users/michellegu/Desktop/CPE/cpe308/base_project/src/main/java/base/InMemoryCourseRepositoy.java
