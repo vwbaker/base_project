@@ -1,46 +1,25 @@
 package base;
 
-
-import javax.persistence.*;
-import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-@Entity
-@DiscriminatorValue("newsfeed")
 public class NewsfeedPost extends Post {
-    
     private String postContent;
-    private String[] tags;
+    private String tags;
+    private Long id;
+
     private Comment[] comments;
-
-    public NewsfeedPost() {
-
-    }
-
-    public NewsfeedPost(User author, String message, String[] tags) {
-        super(author,message);
-        this.tags = tags;
-    }
 
     public String getPostContent() {
         return postContent;
     }
 
-    public void setPostContent(String postContent) {
-        this.postContent = postContent;
-    }
-
-    public String[] getTags() {
+    public String getTags() {
         return tags;
     }
 
-    public void setTags(String[] tags) {
-        this.tags = tags;
+    public Long getId() {
+        return id;
     }
 
     public Comment[] getComments() {
         return comments;
     }
-
 }

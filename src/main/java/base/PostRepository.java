@@ -14,8 +14,17 @@
 package base;
 
 import java.util.List;
-import org.springframework.data.repository.CrudRepository;
 
-public interface ContentDatabase extends CrudRepository<Post, Long> {
+public interface PostRepository {
+
+	Iterable<Post> findAll();
+
+	Post save(Post post);
+
+	List<Post> save(List<Post> posts);
+
+	Post findPost(Long id);
+
+	Post deletePost(Long id);
 
 }
