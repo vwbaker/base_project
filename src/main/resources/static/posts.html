@@ -176,8 +176,7 @@ app.controller('DeletePostCtrl', function($scope, post) {
 						{{p.tags == null ? "" : "#" + p.tags}}
 					</font>
 				</td>
-                                <td><button ng-click="edit(p)">edit</button>
-                                        <button ng-click="delete(p)">delete</button></td>
+                                <td><button ng-click="delete(p)">delete</button></td>
                         </tr>
                 </table>
         </div>
