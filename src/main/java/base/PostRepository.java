@@ -23,8 +23,8 @@ public interface PostRepository {
 
 	List<Post> save(List<Post> posts);
 
-	Post findPost(Long id);
+	Post findPost(int id);
 
-	Post deletePost(Long id);
+	Post deletePost(int id);
 
 }

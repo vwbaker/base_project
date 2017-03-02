@@ -37,7 +37,7 @@ public class InMemoryPostRepositoy implements PostRepository {
 
 	@Override
 	public Post save(Post post) {
-		Long id = post.getId();
+		int id = post.getId();
 		if (id == null) {
 			id = counter.incrementAndGet();
 			post.setId(id);
@@ -56,13 +56,16 @@ public class InMemoryPostRepositoy implements PostRepository {
 	}
 
 	@Override
-	public Post findPost(Long id) {
+	public Post findPost(int id) {
 		return this.posts.get(id);
 	}
 
 	@Override
-	public Post deletePost(Long id) {
+	public Post deletePost(int id) {
 		return this.posts.remove(id);
 	}
+
+	@Override
+	public Post deletePost(int id) { posts.}
 
 }

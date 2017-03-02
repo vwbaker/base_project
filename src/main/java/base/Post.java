@@ -10,6 +10,15 @@ public class Post implements Serializable, Comparable<Post> {
     private SignedOnUser author;
     private String message;
     private int likes;
+    private int id;
+
+    public Post() {
+        this.author = null;
+        this.message = null;
+        this.timestamp = null;
+        this.likes = 0;
+        this.id = 0;
+    }
 
     public Post(SignedOnUser author, String message) {
         this.author = author;
@@ -40,6 +49,14 @@ public class Post implements Serializable, Comparable<Post> {
 
     public void setLikes(int likes) {
         this.likes = likes;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

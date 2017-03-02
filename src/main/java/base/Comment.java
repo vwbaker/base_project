@@ -4,7 +4,9 @@ public class Comment extends Post {
     private Post parent;
     private String author;
 
-    public String getAuthor() {
-        return author;
+    public Comment() {
+        super();
+        this.parent =  null;
+        this.author = null;
     }
 }
