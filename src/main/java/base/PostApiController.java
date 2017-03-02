@@ -16,7 +16,7 @@ public class PostApiController {
   @GetMapping
   public ArrayList<Post> listAll() {
       ArrayList<Post> posts = new ArrayList<>();
-      postRepository.findAll().forEach(post -> posts.add(post));
+      postRepository.findAll().forEach(post -> posts.add(0, post));
       return posts;
   }
 

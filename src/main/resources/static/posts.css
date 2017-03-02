@@ -2,7 +2,52 @@ body {
 	background-color: #B92626;
 }
 
-input {
+.header {
+   padding-left: 20px;
+   color:#fafafa;
+}
+
+.txt-input {
 	padding: 10px;
 	margin-left: 20px;
+	margin-bottom:10px;
+	border-radius:5px;
+}
+
+table tr td {
+   background: #B92626;
+}
+
+table {
+   border: none;
+   width: calc(100% - 40px);
+   box-shadow:none;
+}
+
+textarea {
+   width: 600px;
+   height: 100px;
+}
+
+table tr:hover td {
+   background: #B92626;
+}
+
+table tr td {
+   border-top: #B92626;
+   border-bottom: #B92626;
+}
+
+.post {
+   background-color: #fafafa;
+   padding: 20px;
+   border-radius: 5px;
+}
+
+.button {
+   border-radius: 5px;
+   background-color: #e0e0e0;
+   padding: 5px;
+   padding-left: 20px;
+   padding-right: 20px;
 }
