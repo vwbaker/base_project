@@ -12,6 +12,7 @@
         href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css"
         rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="table.css" />
+<link rel="stylesheet" type="text/css" href="posts.css" />
 
 
 <script>
@@ -151,17 +152,17 @@ app.controller('DeletePostCtrl', function($scope, post) {
 </head>
 <body>
         <div ng-controller="PostCtrl">
-                <h3>Posts:</h3>
-                                <td colspan=1>&nbsp;</td>
-				<input ng-model="post.name" placeholder="Name" size="40"/>
+                <h1>International Activity Meter</h1>
+                                <td colspan=1>&nbsp;</td> <br />
+				<input ng-model="post.name" placeholder="Name" class="txt-input" size="40"/>
 				<br \>
-				<input ng-model="post.title" placeholder="Title (Student/Professor)" size="40"/>
+				<input ng-model="post.title" placeholder="Title (Student/Professor)" class="txt-input" size="40"/>
 				<br \>
-				<input ng-model="post.location" placeholder="Location" size="40"/>
+				<input ng-model="post.location" placeholder="Location" class="txt-input" size="40"/>
 				<br \>
-				<input ng-model="post.messageBody" placeholder="Write about your experiences!" size="40"/>
+				<input ng-model="post.messageBody" placeholder="Write about your experiences!" class="txt-input" size="40"/>
 				<br />
-				<input ng-model="post.tags" placeholder="#tags" size="40"/>
+				<input ng-model="post.tags" placeholder="#tags" class="txt-input" size="40"/>
                                 <button ng-click="save(post)">Create post</button>
 		<table>
 			
