@@ -38,7 +38,11 @@ app.controller('PostCtrl', function ($scope, $http, $dialog) {
 			method: 'POST',
 			url: 'http://localhost:8080/post',
 			data: {
-				messageBody: $scope.post.messageBody
+				messageBody: $scope.post.messageBody,
+				name: $scope.post.name,
+				title: $scope.post.title,
+				location: $scope.post.location,
+				tags: $scope.post.tags
 			}
 		}
 		$http(postRequest).then(function(response) {
@@ -148,14 +152,29 @@ app.controller('DeletePostCtrl', function($scope, post) {
 <body>
         <div ng-controller="PostCtrl">
                 <h3>Posts:</h3>
-                <table>
-                        <tr>
                                 <td colspan=1>&nbsp;</td>
-				<input ng-model="post.messageBody" size="40"/>
-                                <td><button ng-click="save(post)">Create post</button></td>
-                        </tr>
+				<input ng-model="post.name" placeholder="Name" size="40"/>
+				<br \>
+				<input ng-model="post.title" placeholder="Title (Student/Professor)" size="40"/>
+				<br \>
+				<input ng-model="post.location" placeholder="Location" size="40"/>
+				<br \>
+				<input ng-model="post.messageBody" placeholder="Write about your experiences!" size="40"/>
+				<br />
+				<input ng-model="post.tags" placeholder="#tags" size="40"/>
+                                <button ng-click="save(post)">Create post</button>
+		<table>
+			
                         <tr ng-repeat="p in posts">
-                                <td>{{p.messageBody}}</td>
+				<td>
+					<b><font size="5">{{p.name}}</font></b><br />
+					{{p.title}}<br />
+					{{p.location}}<br />
+                                	<font size="5">
+						{{p.messageBody}}
+						{{p.tags == null ? "" : "#" + p.tags}}
+					</font>
+				</td>
                                 <td><button ng-click="edit(p)">edit</button>
                                         <button ng-click="delete(p)">delete</button></td>
                         </tr>

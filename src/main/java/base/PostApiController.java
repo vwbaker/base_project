@@ -26,8 +26,9 @@ public class PostApiController {
   }
 
   @PostMapping
-  public Post create(@RequestBody Post input) {
-      return postRepository.save(new Post(input.getMessageBody()));
+  public Post create(@RequestBody Post in) {
+      return postRepository.save(new Post(in.getMessageBody(), in.getName(), 
+        in.getTitle(), in.getLocation(), in.getTags()));
   }
 
   @DeleteMapping("{id}")
@@ -36,12 +37,16 @@ public class PostApiController {
   }
 
   @PutMapping("{id}")
-  public Post update(@PathVariable Long id, @RequestBody Post input) {
+  public Post update(@PathVariable Long id, @RequestBody Post in) {
       Post post = postRepository.findOne(id);
       if (post == null) {
           return null;
       } else {
-          post.setMessageBody(input.getMessageBody());
+          post.setMessageBody(in.getMessageBody());
+          post.setName(in.getName());
+          post.setTitle(in.getTitle());
+          post.setLocation(in.getLocation());
+          post.setTags(in.getTags());
           return postRepository.save(post);
       }
   }
