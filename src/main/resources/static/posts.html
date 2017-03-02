@@ -21,7 +21,7 @@ var app = angular.module('PostApp', ['ui.bootstrap']);
                 $http({
                  method : 'GET',
                  //url : 'http://test-api-308.herokuapp.com/post'
-		 url : 'http://localhost:8080/post'
+		 url : 'http://cp-missingsemicolons.herokuapp.com//post'
                 }).then(function (response) {
                          $scope.posts = response.data;
                 });
@@ -85,7 +85,7 @@ app.controller('PostCtrl', function ($scope, $http, $dialog) {
 	$scope.delete = function(post) {
                 var deleteRequest = {
                         method: 'DELETE',
-                        url: 'http://localhost:8080/post/' + post.id,
+                        url: 'http://cp-missingsemicolons.herokuapp.com/post/' + post.id,
                 }
                 $http(deleteRequest).then(function(response) {
 			loadPosts($scope, $http);
@@ -101,7 +101,7 @@ app.controller('EditPostCtrl', function ($scope, $http, post, dialog) {
         $scope.save = function($post) {
             var putRequest = {
         		method : 'PUT',
-        		url : 'http://localhost:8080/post/'+ $scope.post.id ,
+        		url : 'http://cp-missingsemicolons.herokuapp.com/post/'+ $scope.post.id ,
         		data: {
                                 messageBody: $scope.post.messageBody
                         }
@@ -127,7 +127,7 @@ app.controller('AddPostCtrl', function($scope, $http, dialog){
 		console.log("in save function:)");
 		var postRequest = {
 			method: 'POST',
-			url: 'http://localhost:8080/post',
+			url: 'http://cp-missingsemicolons.herokuapp.com/post',
 			data: {
 				messageBody: $scope.post.messageBody
 			}
