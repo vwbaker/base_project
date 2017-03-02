@@ -21,7 +21,8 @@ var app = angular.module('PostApp', ['ui.bootstrap']);
                 $http({
                  method : 'GET',
                  //url : 'http://test-api-308.herokuapp.com/post'
-		 url : 'http://cp-missingsemicolons.herokuapp.com//post'
+		 //url : 'http://cp-missingsemicolons.herokuapp.com/post'
+		 url: 'http://localhost:8080/post'
                 }).then(function (response) {
                          $scope.posts = response.data;
                 });
@@ -33,7 +34,6 @@ app.controller('PostCtrl', function ($scope, $http, $dialog) {
   
   
         $scope.save = function(post) {
-		console.log("in save function:)");
 		var postRequest = {
 			method: 'POST',
 			url: 'http://localhost:8080/post',
@@ -45,14 +45,8 @@ app.controller('PostCtrl', function ($scope, $http, $dialog) {
 			$scope.post = response.data;
 		});
         
-        	$scope.close();
         };
   
-        $scope.close = function(){
-		loadPosts($scope, $http);
-        	dialog.close(undefined);
-        };
-                  
         var addDialogOptions = {
         	controller: 'AddPostCtrl',
         	templateUrl: './postAdd.html'
