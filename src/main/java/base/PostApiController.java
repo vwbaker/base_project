@@ -2,26 +2,16 @@ package base;
 
 import java.util.ArrayList;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/post")
 public class PostApiController {
 
-  private final PostRepository postRepository;
-
-  public PostApiController(PostRepository postRepository) {
-      this.postRepository = postRepository;
-  }
+  @Autowired
+  private PostRepository postRepository;
 
   @GetMapping
   public ArrayList<Post> listAll() {
@@ -32,7 +22,7 @@ public class PostApiController {
 
   @GetMapping("{id}")
   public Post find(@PathVariable Long id) {
-      return postRepository.findPost(id);
+      return postRepository.findOne(id);
   }
 
   @PostMapping
@@ -41,13 +31,13 @@ public class PostApiController {
   }
 
   @DeleteMapping("{id}")
-  public Post delete(@PathVariable Long id) {
-      return postRepository.deletePost(id);
+  public void delete(@PathVariable Long id) {
+      postRepository.delete(id);
   }
 
   @PutMapping("{id}")
   public Post update(@PathVariable Long id, @RequestBody Post input) {
-      Post post = postRepository.findPost(id);
+      Post post = postRepository.findOne(id);
       if (post == null) {
           return null;
       } else {
@@ -55,5 +45,4 @@ public class PostApiController {
           return postRepository.save(post);
       }
   }
-  
 }
