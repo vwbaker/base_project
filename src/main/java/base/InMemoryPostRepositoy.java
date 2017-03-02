@@ -66,6 +66,6 @@ public class InMemoryPostRepositoy implements PostRepository {
 	}
 
 	@Override
-	public Post deletePost(int id) { posts.}
+	public Post deletePost(int id) { return null; }
 
 }

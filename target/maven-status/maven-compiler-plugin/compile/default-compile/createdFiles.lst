@@ -1,6 +1,0 @@
-base\NewsfeedPost.class
-base\Application.class
-base\Comment.class
-base\SignedOnUser.class
-base\Post.class
-base\PostRepository.class
