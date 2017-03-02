@@ -13,10 +13,6 @@ public class CourseApiController {
   @Autowired
   private CourseRepository courseRepository;
 
-  // public CourseApiController(CourseRepository courseRepository) {
-  // this.courseRepository = courseRepository;
-  // }
-
   @GetMapping
   public ArrayList<Course> listAll() {
     ArrayList<Course> courses = new ArrayList<>();
