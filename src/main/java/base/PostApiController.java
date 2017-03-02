@@ -35,19 +35,4 @@ public class PostApiController {
   public void delete(@PathVariable Long id) {
       postRepository.delete(id);
   }
-
-  @PutMapping("{id}")
-  public Post update(@PathVariable Long id, @RequestBody Post in) {
-      Post post = postRepository.findOne(id);
-      if (post == null) {
-          return null;
-      } else {
-          post.setMessageBody(in.getMessageBody());
-          post.setName(in.getName());
-          post.setTitle(in.getTitle());
-          post.setLocation(in.getLocation());
-          post.setTags(in.getTags());
-          return postRepository.save(post);
-      }
-  }
 }
