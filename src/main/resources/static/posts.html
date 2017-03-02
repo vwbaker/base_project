@@ -92,32 +92,6 @@ app.controller('PostCtrl', function ($scope, $http, $dialog) {
 	}
         
 });
-app.controller('EditPostCtrl', function ($scope, $http, post, dialog) {
-  
-        $scope.post = post;
-
-        $scope.save = function($post) {
-            var putRequest = {
-        		method : 'PUT',
-        		url : 'http://cp-missingsemicolons.herokuapp.com/post/'+ $scope.post.id ,
-        		data: {
-                                messageBody: $scope.post.messageBody
-                        }
-           }  
-                
-                $http(putRequest).then(function (response) {
-                    $scope.post = response.data;
-                });
-                //todo handle error
-        $scope.close();
-        };
-  
-        $scope.close = function(){
-                loadPosts($scope, $http);
-        dialog.close();
-        };
-});
-
 
 app.controller('AddPostCtrl', function($scope, $http, dialog){
   

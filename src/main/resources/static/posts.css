@@ -24,11 +24,6 @@ table {
    box-shadow:none;
 }
 
-textarea {
-   width: 600px;
-   height: 100px;
-}
-
 table tr:hover td {
    background: #B92626;
 }
