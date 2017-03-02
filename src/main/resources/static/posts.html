@@ -31,6 +31,27 @@ app.controller('PostCtrl', function ($scope, $http, $dialog) {
         
         loadPosts($scope, $http);
   
+  
+        $scope.save = function(post) {
+		console.log("in save function:)");
+		var postRequest = {
+			method: 'POST',
+			url: 'http://localhost:8080/post',
+			data: {
+				messageBody: $scope.post.messageBody
+			}
+		}
+		$http(postRequest).then(function(response) {
+			$scope.post = response.data;
+		});
+        
+        	$scope.close();
+        };
+  
+        $scope.close = function(){
+		loadPosts($scope, $http);
+        	dialog.close(undefined);
+        };
                   
         var addDialogOptions = {
         	controller: 'AddPostCtrl',
@@ -103,6 +124,7 @@ app.controller('EditPostCtrl', function ($scope, $http, post, dialog) {
 app.controller('AddPostCtrl', function($scope, $http, dialog){
   
         $scope.save = function(post) {
+		console.log("in save function:)");
 		var postRequest = {
 			method: 'POST',
 			url: 'http://localhost:8080/post',
@@ -135,7 +157,8 @@ app.controller('DeletePostCtrl', function($scope, post) {
                 <table>
                         <tr>
                                 <td colspan=1>&nbsp;</td>
-                                <td><button ng-click="add()">add post</button></td>
+				<input ng-model="post.messageBody" size="40"/>
+                                <td><button ng-click="save(post)">Create post</button></td>
                         </tr>
                         <tr ng-repeat="p in posts">
                                 <td>{{p.messageBody}}</td>
