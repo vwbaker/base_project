@@ -7,7 +7,7 @@
 <script
         src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script
-        src="https://angular-ui.github.com/bootstrap/ui-bootstrap-tpls-0.1.0.js"></script>
+        src="http://angular-ui.github.com/bootstrap/ui-bootstrap-tpls-0.1.0.js"></script>
 <link
         href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css"
         rel="stylesheet">
@@ -18,16 +18,16 @@
 <script>
 var app = angular.module('PostApp', ['ui.bootstrap']);
 
-        function loadPosts ($scope, $http){
-                $http({
-                 method : 'GET',
-	 	 url: (window.location.hostname === 'localhost' ? 
-			'http://localhost:8080/post' : 
-			'https://cp-missingsemicolons.herokuapp.com/post')
-                }).then(function (response) {
-                         $scope.posts = response.data;
-                });
-        }
+ function loadPosts ($scope, $http){
+ 	$http({
+        method : 'GET',
+	url: (window.location.hostname === 'localhost' ? 
+		'http://localhost:8080/post' : 
+		'https://cp-missingsemicolons.herokuapp.com/post')
+        }).then(function (response) {
+                $scope.posts = response.data;
+        });
+}
 
 app.controller('PostCtrl', function ($scope, $http) {
         
@@ -54,9 +54,9 @@ app.controller('PostCtrl', function ($scope, $http) {
         };
   
 });
-
 </script>
 </head>
+
 <body>
 	<div ng-controller="PostCtrl">
 		<h1 class="header">International Activity Meter</h1>
@@ -72,7 +72,7 @@ app.controller('PostCtrl', function ($scope, $http) {
 		<br />
 		<input ng-model="post.tags" placeholder="#tags" class="txt-input" size="40"/>
                 <button ng-click="save(post)" class="button">Create Post</button>
-		
+
 		<table class="newsfeed">
                        	<tr ng-repeat="p in posts">
 				<td>

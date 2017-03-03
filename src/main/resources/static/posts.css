@@ -1,5 +1,5 @@
 body {
-	background-color: #B92626;
+	background-color: #2a343e;
 }
 
 .header {
@@ -15,7 +15,7 @@ body {
 }
 
 table tr td {
-   background: #B92626;
+   background: #2a343e;
 }
 
 table {
@@ -25,12 +25,12 @@ table {
 }
 
 table tr:hover td {
-   background: #B92626;
+   background: #2a343e;
 }
 
 table tr td {
-   border-top: #B92626;
-   border-bottom: #B92626;
+   border-top: #2a343e;
+   border-bottom: #2a343e;
 }
 
 .post {
