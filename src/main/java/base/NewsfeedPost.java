@@ -1,10 +1,8 @@
 package base;
 
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("newsfeed")

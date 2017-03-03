@@ -2,6 +2,7 @@ package base;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 
 @RestController
@@ -25,7 +26,7 @@ public class Controller {
         NewsfeedPost np = new NewsfeedPost(user, input.getMessage(), input.getTags());
         if(!contentController.newPost(np)) { //if new post could not be made null is returned
             np = null;
-        };
+        }
         return np;
     }
 
@@ -39,9 +40,21 @@ public class Controller {
         postRepository.deleteAll();
     }
 
+
     @PutMapping("{id}")
-    public Post update(@PathVariable Long id, @RequestBody NewsfeedPost input) {
+    public Post incrementLike(@PathVariable Long id) {
         NewsfeedPost post = (NewsfeedPost)postRepository.findOne(id);
+            if (post == null) {
+                return null;
+            } else {
+                post.setLikes(post.getLikes()+1);
+            return postRepository.save(post);
+        }
+    }
+
+    @PutMapping
+    public Post update(@RequestBody NewsfeedPost input) {
+        NewsfeedPost post = (NewsfeedPost)postRepository.findOne(input.getId());
         if (post == null) {
             return null;
         } else {

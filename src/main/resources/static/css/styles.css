@@ -54,3 +54,7 @@ body {
     border-style: round;
     border-radius: 2px;
 }
+
+.well {
+    background: rgb(255, 255, 255);
+}
