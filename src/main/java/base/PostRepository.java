@@ -13,8 +13,22 @@
 
 package base;
 
+<<<<<<< HEAD:src/main/java/base/ContentDatabase.java
 import org.springframework.data.repository.CrudRepository;
+=======
+import java.util.List;
+>>>>>>> c72673220e80db08818a9575f498a32682df4b8e:src/main/java/base/PostRepository.java
 
-public interface ContentDatabase extends CrudRepository<Post, Long> {
+public interface PostRepository {
+
+	Iterable<Post> findAll();
+
+	Post save(Post post);
+
+	List<Post> save(List<Post> posts);
+
+	Post findPost(int id);
+
+	Post deletePost(int id);
 
 }

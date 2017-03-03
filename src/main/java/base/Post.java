@@ -1,38 +1,34 @@
 package base;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@Entity
-@Table(name = "PostTable")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="ptype", discriminatorType=DiscriminatorType.STRING)
-@DiscriminatorValue("post")
 public class Post implements Serializable, Comparable<Post> {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    private String timeStamp;
-    private User author;
+    private String timestamp;
+    private SignedOnUser author;
     private String message;
     private int likes;
+    private int id;
 
     public Post() {
-
+        this.author = null;
+        this.message = null;
+        this.timestamp = null;
+        this.likes = 0;
+        this.id = 0;
     }
 
-    public Post(User author, String message) {
+    public Post(SignedOnUser author, String message) {
         this.author = author;
         this.message = message;
-        this.timeStamp = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date());
+        this.timestamp = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date());
         this.likes = 0;
     }
 
-    public String getTimeStamp() {
-    	return timeStamp;
+    public String getTimestamp() {
+    	return timestamp;
     }
     
     public String getMessage() {
@@ -43,7 +39,7 @@ public class Post implements Serializable, Comparable<Post> {
         this.message = message;
     }
 
-    public User getAuthor() {
+    public SignedOnUser getAuthor() {
         return author;
     }
 
@@ -55,17 +51,16 @@ public class Post implements Serializable, Comparable<Post> {
         this.likes = likes;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
     @Override
 	public int compareTo(Post o) {
-		return timeStamp.compareTo(o.getTimeStamp());
+		return timestamp.compareTo(o.getTimestamp());
 	}
-
 }
