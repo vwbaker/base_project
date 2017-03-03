@@ -21,23 +21,24 @@ var app = angular.module('PostApp', ['ui.bootstrap']);
         function loadPosts ($scope, $http){
                 $http({
                  method : 'GET',
-                 //url : 'http://test-api-308.herokuapp.com/post'
-		 url : 'https://cp-missingsemicolons.herokuapp.com/post'
-		 //url: 'http://localhost:8080/post'
+	 	 url: (window.location.hostname === 'localhost' ? 
+			'http://localhost:8080/post' : 
+			'https://cp-missingsemicolons.herokuapp.com/post')
                 }).then(function (response) {
                          $scope.posts = response.data;
                 });
         }
 
-app.controller('PostCtrl', function ($scope, $http, $dialog) {
+app.controller('PostCtrl', function ($scope, $http) {
         
         loadPosts($scope, $http);
   
         $scope.save = function(post) {
 		var postRequest = {
 			method: 'POST',
-			//url: 'http://localhost:8080/post',
-			url : 'https://cp-missingsemicolons.herokuapp.com/post',
+			url: (window.location.hostname === 'localhost' ? 
+				'http://localhost:8080/post' : 
+				'https://cp-missingsemicolons.herokuapp.com/post'),
 			data: {
 				messageBody: $scope.post.messageBody,
 				name: $scope.post.name,
@@ -52,107 +53,40 @@ app.controller('PostCtrl', function ($scope, $http, $dialog) {
 		});
         };
   
-        var addDialogOptions = {
-        	controller: 'AddPostCtrl',
-        	templateUrl: './postAdd.html'
-        };
-        
-        $scope.add = function(post){
-        	$dialog.dialog(angular.extend(addDialogOptions, {})).open()
-        	.then(function () {
-                	loadPosts($scope, $http);
-                });
-        };
-        
-        var editDialogOptions = {
-            controller: 'EditPostCtrl',
-            templateUrl: './postEdit.html',
-        };
-
-        $scope.edit = function(post) {
-                var postToEdit = post;
-        	$dialog.dialog(angular.extend(editDialogOptions, {resolve: {post: angular.copy(postToEdit)}})).open().then(function () {
-		loadPosts($scope, $http);
-        	});
-	};
-
-	var deleteDialogOptions = {
-		controller: 'DeletePostCtrl',
-		templateUrl: './postDelete.html',
-	};
-
-	$scope.delete = function(post) {
-                var deleteRequest = {
-                        method: 'DELETE',
-                        url: 'https://cp-missingsemicolons.herokuapp.com/post/' + post.id,
-                }
-                $http(deleteRequest).then(function(response) {
-			loadPosts($scope, $http);
-                });
-        
-	}
-        
 });
-
-app.controller('AddPostCtrl', function($scope, $http, dialog){
-  
-        $scope.save = function(post) {
-		console.log("in save function:)");
-		var postRequest = {
-			method: 'POST',
-			url: 'https://cp-missingsemicolons.herokuapp.com/post',
-			data: {
-				messageBody: $scope.post.messageBody
-			}
-		}
-		$http(postRequest).then(function(response) {
-			$scope.post = response.data;
-		});
-        
-        	$scope.close();
-        };
-  
-        $scope.close = function(){
-		loadPosts($scope, $http);
-        	dialog.close(undefined);
-        };
-});
-
-app.controller('DeletePostCtrl', function($scope, post) {
-});
-
 
 </script>
 </head>
 <body>
-        <div ng-controller="PostCtrl">
-                <h1 class="header">International Activity Meter</h1>
-                                <td colspan=1>&nbsp;</td> <br />
-				<input ng-model="post.name" placeholder="Name" class="txt-input" size="40"/>
-				<br \>
-				<input ng-model="post.title" placeholder="Title (Student/Professor)" class="txt-input" size="40"/>
-				<br \>
-				<input ng-model="post.location" placeholder="Location" class="txt-input" size="40"/>
-				<br \>
-				<textarea ng-model="post.messageBody" placeholder="Write about your experiences!" class="txt-input" rows="4" cols="1000" ></textarea>
-				<br />
-				<input ng-model="post.tags" placeholder="#tags" class="txt-input" size="40"/>
-                                <button ng-click="save(post)" class="button">Create Post</button>
+	<div ng-controller="PostCtrl">
+		<h1 class="header">International Activity Meter</h1>
+		<input ng-model="post.name" placeholder="Name" class="txt-input" size="40"/>
+		<br \>
+		<input ng-model="post.title" placeholder="Title (Student/Professor)" 
+			class="txt-input" size="40"/>
+		<br \>
+		<input ng-model="post.location" placeholder="Location" class="txt-input" size="40"/>
+		<br \>
+		<textarea ng-model="post.messageBody" placeholder="Write about your experiences!" 
+			class="txt-input" rows="4" cols="1000" ></textarea>
+		<br />
+		<input ng-model="post.tags" placeholder="#tags" class="txt-input" size="40"/>
+                <button ng-click="save(post)" class="button">Create Post</button>
+		
 		<table class="newsfeed">
-			
-                        <tr ng-repeat="p in posts">
+                       	<tr ng-repeat="p in posts">
 				<td>
 				<div class="post">
 					<b><font size="5">{{p.name}}</font></b><br />
 					{{p.title}}<br />
 					{{p.location}}<br /><br />
-                                	<font size="5">
+                        	       	<font size="5">
 						{{p.messageBody}}
 						{{p.tags == null ? "" : "#" + p.tags}}
 					</font>
 				</div>
 				</td>
-                        </tr>
+                	</tr>
                 </table>
         </div>
 </body>
