@@ -1,11 +1,5 @@
-var LOCAL = false;
-var domain;
-
-if(LOCAL) {
-    domain = "http://localhost:8080";
-} else {
-    domain = "https://cp-fellowship.herokuapp.com";
-}
+//var domain = "http://localhost:8080";
+var domain = "https://cp-fellowship.herokuapp.com";
 
 function template(object) {
     var id = object["id"];
