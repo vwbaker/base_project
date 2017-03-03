@@ -22,8 +22,8 @@ var app = angular.module('PostApp', ['ui.bootstrap']);
                 $http({
                  method : 'GET',
                  //url : 'http://test-api-308.herokuapp.com/post'
-		 //url : 'http://cp-missingsemicolons.herokuapp.com/post'
-		 url: 'http://localhost:8080/post'
+		 url : 'http://cp-missingsemicolons.herokuapp.com/post'
+		 //url: 'http://localhost:8080/post'
                 }).then(function (response) {
                          $scope.posts = response.data;
                 });
@@ -33,11 +33,11 @@ app.controller('PostCtrl', function ($scope, $http, $dialog) {
         
         loadPosts($scope, $http);
   
-  
         $scope.save = function(post) {
 		var postRequest = {
 			method: 'POST',
-			url: 'http://localhost:8080/post',
+			//url: 'http://localhost:8080/post',
+			url : 'http://cp-missingsemicolons.herokuapp.com/post',
 			data: {
 				messageBody: $scope.post.messageBody,
 				name: $scope.post.name,
@@ -47,9 +47,9 @@ app.controller('PostCtrl', function ($scope, $http, $dialog) {
 			}
 		}
 		$http(postRequest).then(function(response) {
-			$scope.post = response.data;
+			loadPosts($scope, $http);
+			$scope.post = null;
 		});
-        
         };
   
         var addDialogOptions = {
@@ -100,7 +100,7 @@ app.controller('AddPostCtrl', function($scope, $http, dialog){
 		console.log("in save function:)");
 		var postRequest = {
 			method: 'POST',
-			url: 'http://cp-missingsemicolons.herokuapp.com/post',
+	        	url: 'http://cp-missingsemicolons.herokuapp.com/post',
 			data: {
 				messageBody: $scope.post.messageBody
 			}
@@ -134,23 +134,24 @@ app.controller('DeletePostCtrl', function($scope, post) {
 				<br \>
 				<input ng-model="post.location" placeholder="Location" class="txt-input" size="40"/>
 				<br \>
-				<input ng-model="post.messageBody" placeholder="Write about your experiences!" class="txt-input" size="40"/>
+				<textarea ng-model="post.messageBody" placeholder="Write about your experiences!" class="txt-input" rows="4" cols="1000" ></textarea>
 				<br />
 				<input ng-model="post.tags" placeholder="#tags" class="txt-input" size="40"/>
-                                <button ng-click="save(post)">Create post</button>
-		<table>
+                                <button ng-click="save(post)" class="button">Create Post</button>
+		<table class="newsfeed">
 			
                         <tr ng-repeat="p in posts">
 				<td>
+				<div class="post">
 					<b><font size="5">{{p.name}}</font></b><br />
 					{{p.title}}<br />
-					{{p.location}}<br />
+					{{p.location}}<br /><br />
                                 	<font size="5">
 						{{p.messageBody}}
 						{{p.tags == null ? "" : "#" + p.tags}}
 					</font>
+				</div>
 				</td>
-                                <td><button ng-click="delete(p)">delete</button></td>
                         </tr>
                 </table>
         </div>
