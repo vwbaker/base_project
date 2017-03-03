@@ -36,7 +36,8 @@ app.controller('PostCtrl', function ($scope, $http, $dialog) {
         $scope.save = function(post) {
 		var postRequest = {
 			method: 'POST',
-			url: 'http://localhost:8080/post',
+			//url: 'http://localhost:8080/post',
+			url : 'http://cp-missingsemicolons.herokuapp.com/post',
 			data: {
 				messageBody: $scope.post.messageBody,
 				name: $scope.post.name,
