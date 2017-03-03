@@ -1,4 +1,4 @@
-var LOCAL = true;
+var LOCAL = false;
 var domain;
 
 if(LOCAL) {
