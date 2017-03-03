@@ -1,24 +1,24 @@
 package base;
 
-<<<<<<< HEAD
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("newsfeed")
-=======
->>>>>>> c72673220e80db08818a9575f498a32682df4b8e
 public class NewsfeedPost extends Post {
+    
     private String postContent;
-    private String tags;
+    private String[] tags;
     private Comment[] comments;
 
     public NewsfeedPost() {
-        super();
-        this.postContent = null;
-        this.tags = null;
-        comments = null;
+
+    }
+
+    public NewsfeedPost(User author, String message, String[] tags) {
+        super(author,message);
+        this.tags = tags;
     }
 
     public String getPostContent() {
@@ -29,11 +29,11 @@ public class NewsfeedPost extends Post {
         this.postContent = postContent;
     }
 
-    public String getTags() {
+    public String[] getTags() {
         return tags;
     }
 
-    public void setTags(String tags) {
+    public void setTags(String[] tags) {
         this.tags = tags;
     }
 
@@ -41,7 +41,4 @@ public class NewsfeedPost extends Post {
         return comments;
     }
 
-    public void setComments(Comment[] comments) {
-        this.comments = comments;
-    }
 }
