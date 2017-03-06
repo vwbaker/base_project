@@ -1,4 +1,4 @@
-package base;
+package base.tag;
 
 import java.io.Serializable;
 import java.util.ArrayList;

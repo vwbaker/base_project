@@ -1,4 +1,4 @@
-package base;
+package base.post;
 
 import org.springframework.data.repository.CrudRepository;
 

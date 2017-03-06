@@ -11,7 +11,7 @@
  * specific language governing permissions and limitations under the License.
  */
 
-package base;
+package base.course;
 
 import org.springframework.data.repository.CrudRepository;
 

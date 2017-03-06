@@ -1,4 +1,4 @@
-package base;
+package base.tag;
 
 import org.springframework.data.repository.CrudRepository;
 

@@ -1,4 +1,4 @@
-package base;
+package base.profile;
 
 import java.io.Serializable;
 
