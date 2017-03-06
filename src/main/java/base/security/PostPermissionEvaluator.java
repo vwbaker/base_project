@@ -28,7 +28,7 @@ import java.io.Serializable;
  *
  */
 @Component
-public class MessagePermissionEvaluator implements PermissionEvaluator {
+public class PostPermissionEvaluator implements PermissionEvaluator {
 	/* (non-Javadoc)
 	* @see org.springframework.security.access.PermissionEvaluator#hasPermission(org.springframework.security.core.Authentication, java.lang.Object, java.lang.Object)
  	*/

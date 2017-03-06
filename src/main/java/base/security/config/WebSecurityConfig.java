@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -19,7 +20,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration // Tell Spring this is a configuration class
 @EnableWebSecurity // Tell Spring to enable security as a web application
-    public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+@EnableGlobalMethodSecurity(prePostEnabled=true) // Enable @Pre @PostAuthorize
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Value("${jwt.route.authentication.path}")
     private String authPath;
