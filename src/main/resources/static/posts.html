@@ -23,7 +23,7 @@ var app = angular.module('PostApp', ['ui.bootstrap']);
         method : 'GET',
 	url: (window.location.hostname === 'localhost' ? 
 		'http://localhost:8080/post' : 
-		'https://cp-missingsemicolons.herokuapp.com/post')
+		'http://cp-missingsemicolons.herokuapp.com/post')
         }).then(function (response) {
                 $scope.posts = response.data;
 		for (var j = 0; j < response.data.length; j++) {
@@ -46,7 +46,7 @@ app.controller('PostCtrl', function ($scope, $http) {
 			method: 'POST',
 			url: (window.location.hostname === 'localhost' ? 
 				'http://localhost:8080/post' : 
-				'https://cp-missingsemicolons.herokuapp.com/post'),
+				'http://cp-missingsemicolons.herokuapp.com/post'),
 			data: {
 				messageBody: $scope.post.messageBody,
 				name: $scope.post.name,
