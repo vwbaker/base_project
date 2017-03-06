@@ -44,7 +44,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
                 .antMatchers(HttpMethod.POST, "/user").permitAll() // to get auth token
                 .anyRequest().authenticated();
 
-        // Custom JWT based security filter
+        // Custom JWT based security filter -- Check for JWT tokens
         http
             .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
     }

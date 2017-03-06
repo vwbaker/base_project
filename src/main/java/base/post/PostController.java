@@ -27,6 +27,11 @@ public class PostController {
         return posts;
     }
 
+    @GetMapping("{id}")
+    public Post findPostByID(@PathVariable Long id) {
+        return postRepository.findOne(id);
+    }
+
     // Must be authenticated to Post
     @PostMapping
     public Post create(@CurrentUser User currentUser, @RequestBody Post post) {
