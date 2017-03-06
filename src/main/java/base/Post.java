@@ -1,6 +1,8 @@
 package base;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,11 +20,11 @@ public class Post implements Serializable {
   private String name;
   private String title;
   private String location;
-  private String tags;
+  private ArrayList<String> tags = new ArrayList<String>();
   
   public Post (){};
   
-  public Post(String messageBody, String name, String title, String location, String tags) {
+  public Post(String messageBody, String name, String title, String location, ArrayList<String> tags) {
     this.messageBody = messageBody;
     this.name = name;
     this.title = title;
@@ -50,7 +52,7 @@ public class Post implements Serializable {
     return location;
   }
   
-  public String getTags() {
+  public ArrayList<String> getTags() {
     return tags;
   }
   
@@ -74,7 +76,7 @@ public class Post implements Serializable {
     location = l;
   }
   
-  public void setTags(String t) {
+  public void setTags(ArrayList<String> t) {
     tags = t;
   }
 }

@@ -26,6 +26,13 @@ var app = angular.module('PostApp', ['ui.bootstrap']);
 		'https://cp-missingsemicolons.herokuapp.com/post')
         }).then(function (response) {
                 $scope.posts = response.data;
+		for (var j = 0; j < response.data.length; j++) {
+			var tags = "";
+			for (var i = 0; i < response.data[j].tags.length; i++) {
+				tags += "#" + response.data[j].tags[i] + " ";
+			}
+			$scope.posts[j].tags = tags;
+		}
         });
 }
 
@@ -34,6 +41,7 @@ app.controller('PostCtrl', function ($scope, $http) {
         loadPosts($scope, $http);
   
         $scope.save = function(post) {
+		var tags = $scope.post.tags.trim().split(/[#\s]+/);
 		var postRequest = {
 			method: 'POST',
 			url: (window.location.hostname === 'localhost' ? 
@@ -44,7 +52,7 @@ app.controller('PostCtrl', function ($scope, $http) {
 				name: $scope.post.name,
 				title: $scope.post.title,
 				location: $scope.post.location,
-				tags: $scope.post.tags
+				tags: tags
 			}
 		}
 		$http(postRequest).then(function(response) {
@@ -82,7 +90,7 @@ app.controller('PostCtrl', function ($scope, $http) {
 					{{p.location}}<br /><br />
                         	       	<font size="5">
 						{{p.messageBody}}
-						{{p.tags == null ? "" : "#" + p.tags}}
+						{{p.tags}}
 					</font>
 				</div>
 				</td>
