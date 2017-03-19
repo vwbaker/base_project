@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" />
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/styles.css" />
 	<link rel="stylesheet" type="text/css" href="table.css" />
@@ -25,7 +25,7 @@
 				<a class="navbar-brand" href="#">
 					<img src="img/logo.png">
 				</a>
-				<a href="#" class="navbar-text"><strong>The Fellowship</strong></a>
+				<a href="#" class="title navbar-text"><strong>The Fellowship</strong></a>
 			</div>
 			<!-- <div class="navbar-collapse collapse"> -->
 			<div class="collapse navbar-collapse navHeaderCollapse" id="">
@@ -43,68 +43,92 @@
 						</ul>
 					</li>
 					<li><a href="#" class=""><span class="glyphicon glyphicon-globe"></span>Notifications</a></li>
-					<li><a href="#" class=""><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+					<li><a href="login" class=""><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-
-	<div id="mycarousel" class="carousel slide hidden-xs" data-ride="carousel">
-		<div class="carousel-inner">
-			<div class="item active">
-			  	<img src="img/banner.jpg" class="img-responsive">
-				<div class="carousel-caption">
-					<h3>Bringing universities together</h3>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<div class="container">
 
 		<div class="row">
 
 			<div class="col-md-3 col-xs-12">
-				<div class="input-group input-group-sm">
-					<span class="input-group-addon">
-						<span class="glyphicon glyphicon-search"></span>
-					</span>
-					<input  id="searchBar" type="text" class="form-control input-sm">
+				<div class="panel">
+					<div class="panel-heading">
+						<h4 class="panel-title"> Filters </h4>
+					</div>
+					<div id="filterGroup" class="list-group">
+						<button href="#" class="list-group-item">Professor</button>
+						<button href="#" class="list-group-item">Student</button>
+						<button href="#" class="list-group-item">Engineering</button>
+						<button href="#" class="list-group-item">Business</button>
+					</div>
 				</div>
-				<br>
-				<div id="filterGroup" class="list-group">
-					<button href="#" class="list-group-item disabled">
-						<span class="glyphicon glyphicon-book"></span>
-						<span class="">  Filters</span>
-					</button>
-					<button href="#" class="list-group-item">Professor</button>
-					<button href="#" class="list-group-item">Student</button>
-					<button href="#" class="list-group-item">Engineering</button>
-					<button href="#" class="list-group-item">Business</button>
+				<div class="panel">
+					<div class="panel-heading">
+						<h4 class="panel-title"> Search </h4>
+					</div>
+					<div class="panel-body input-group input-group-sm">
+						<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+						<input  id="searchBar" type="text" class="form-control input-sm">
+					</div>
+					<div class="panel-footer">
+						<button id="searchButton" class="btn btn-default btn-sm"> Search </button>
+					</div>
 				</div>
 			</div>
 
 			<div class="col-md-9 col-xs-12">
 
-				<div class="well well-sm hidden-sm-down">
-					<div class="form-group">
-						<label><h4>Create new post</h4></label>
+				<!-- create a post -->
+				<div class="panel">
+					<div class="panel-heading">
+						<h4 class="panel-title"> Create a post </h4>
+					</div>
+					<div class="panel-body form-group">
 						<textarea  id="postTextarea" class="form-control" rows="5"></textarea>
-						<button id="postSubmit" class="btn btn-primary" style="margin-top: 1em">Submit</button>
+						<br>
+						<div class="input-group input-group-sm">
+							<span class="input-group-addon" id="basic-addon1"> Tags </span>
+							<input id="postTags" type="text" class="form-control" placeholder="tag1,...">
+						</div>
+					</div>
+					<div class="panel-footer">
+						<button href="javascript:void(0);" id="postSubmit" class="btn btn-default">Submit</button>
 					</div>
 				</div>
 
-				<div class="well well-sm">
+				<div id="postBody" class="areaWrapper">
 					<div id="listArea" class="row">
-						<div id="newsPost" class="col-md-6 col-xs-12">
-							<div class="well">
-								<h4>Test Header</h4>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-								Nulla fringilla augue ut lacus ullamcorper consequat. Cras a lacus aliquet, 
-								dignissim massa sit amet, luctus erat. Phasellus vitae lacus enim. 
-								Vestibulum non massa elementum, tincidunt arcu finibus, elementum augue. 
-							</div>
-						</div>   
+						<!-- sample -->
+						<!--<div id="1" class="col-xs-12">-->
+							<!--<div class="panel post">-->
+								<!--<div class="panel-heading">-->
+									<!--<h3 class="panel-title"><em>Test Header </em> <small class="pull-right">12:20 pm</small></h3>-->
+								<!--</div>-->
+								<!--<div class="panel-body">-->
+									<!--<div class="well">-->
+									<!--In sed sapien placerat justo porta lobortis.-->
+									<!--In imperdiet ligula in enim scelerisque gravida.-->
+									<!--Mauris eu nisi eget quam lobortis efficitur vel non libero.-->
+									<!--</div>-->
+									<!--<ul class="tags list-inline">-->
+										<!--<li>Lit</li>-->
+										<!--<li>Fresh</li>-->
+										<!--<li>Sexy</li>-->
+									<!--</ul>-->
+								<!--</div>-->
+								<!--<div class="panel-footer">-->
+									<!--<ul class="list-inline">-->
+										<!--<li><a id="likeButton" href="javascript:void(0);" class="btn btn-sm btn-default">-->
+												<!--5    <span class="glyphicon glyphicon-heart"></span>  </a></li>-->
+										<!--<li><a id="commentButton" href="javascript:void(0);" class="btn btn-sm btn-default">-->
+												<!--5    <span class="glyphicon glyphicon-comment"></span>  </a></li>-->
+									<!--</ul>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
 					</div>
 				</div>
 			</div>
@@ -113,6 +137,7 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery-dateFormat.min.js"></script>
 <script type="text/javascript" src="js/myScripts.js"></script>
 </body>
 </html>

@@ -1,60 +1,95 @@
-
+/*colors*/
 body {
-    --colorPrimary-0: #6ADF5D;  /* Main Primary color */
-    --colorPrimary-1: #BAF6B3;
-    --colorPrimary-2: #8DEB84;
-    --colorPrimary-3: #4CD13E;
-    --colorPrimary-4: #2DBD1E;
-
-    --color-secondary-1-0: #5F79C5;  /* Main Secondary color (1) */
-    --color-secondary-1-1: #B5C4EF;
-    --color-secondary-1-2: #869BDC;
-    --color-secondary-1-3: #415CAC;
-    --color-secondary-1-4: #27459C;
-
-    --color-secondary-2-0: #FFD06B;  /* Main Secondary color (2) */
-    --color-secondary-2-1: #FFE9BA;
-    --color-secondary-2-2: #FFDB8E;
-    --color-secondary-2-3: #FFC64C;
-    --color-secondary-2-4: #E7AA24;
-
-    --color-complement-0: #FC6971;   /* Main Complement color */
-    --color-complement-1: #FEB9BC;
-    --color-complement-2: #FD8D93;
-    --color-complement-3: #FB4B54;
-    --color-complement-4: #E3242D;
+    --light-grey: #aabbcc;
+    --dark-blue: #2aabd2;
+    --light-blue: #ddefff;
 }
 
 body {
-    background-color: var(--colorPrimary-1)
+    background-color: var(--light-grey);
 }
 
-.welcome-header {
-    background-color: var(--colorPrimary-0);
+#postBody {
+    background-color: transparent;
+}
+
+.post .panel-body{
+    padding-bottom: 0px;
+}
+
+.post .panel-footer{
+    padding-bottom: 0px;
+}
+
+.panel {
+    box-shadow: 5px 5px 15px -3px #666666;
+}
+
+.panel .panel-heading {
+    background-color: var(--dark-blue);
     color: white;
-    text-shadow: 2px 2px 4px #000000;
 }
 
-#mainPage {
+.panel .panel-footer {
+    background: white;
+}
+
+.panel-title {
+    font-size: 1.7em;
+}
+
+.post .panel-body {
+    /*background-color: var(--light-blue);*/
     background-color: white;
-    padding-top: 1em;
-    padding-bottom: 1em;
 }
 
-.carousel {
-    margin-top: -2em;
-}
-
-.carousel-caption {
-    top: 50%;
-    transform: translateY(-50%);
-    bottom: initial;
+.panel-body p {
+    font-size: 1em;
     background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+.post a {
+    background: white;
+}
+
+nav.navbar {
+    background: white;
+    box-shadow: 5px 5px 15px -3px #666666;
+}
+
+.navbar .title {
     color: black;
-    border-style: round;
-    border-radius: 2px;
+    text-outline: 1px;
+    font-size: 2em;
+}
+
+.tags li {
+    font-size: .8em;
+    /*color: white;*/
+    color: black;
+    font-style: italic;
+    /*width: 8em;*/
+    padding: 2px 10px;
+    margin: 0px 5px;
+    text-align: center;
+    /*background-color: var(--dark-blue);*/
+    background-color: var(--light-blue);
+    /*background-color: white;*/
+    /*border: 1px solid black;*/
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 4px rgba(0,0,0,.1);
+}
+
+.btn-default {
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 5px;
+    padding-right: 20px;
+    padding-left: 20px;
 }
 
 .well {
-    background: rgb(255, 255, 255);
+    background-color: white;
 }
