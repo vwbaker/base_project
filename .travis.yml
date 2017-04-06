@@ -3,8 +3,6 @@ jdk:
   - oraclejdk8
 # By default TravisCi will call gradlew check'
 # script:
-script:
-  - ./gradlew clean build -i --continue
 
 notifications:
   # Email notifications are disabled to not annoy anybody.
