@@ -13,10 +13,10 @@ public class HomeController {
     @GetMapping
     public String index() { return "index.html"; }
 
-    @GetMapping("login")
-    public String login() { return "signon.html"; }
+    @GetMapping("sign-in")
+    public String signIn() { return "signIn.html"; }
 
-    @GetMapping("signup")
-    public String signup() { return "signup.html"; }
+    @GetMapping("sign-up")
+    public String signUp() { return "signUp.html"; }
 
 }

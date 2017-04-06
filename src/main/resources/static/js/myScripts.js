@@ -1,5 +1,5 @@
 // Local debugging helper
-var LOCAL = false;
+var LOCAL = true;
 var domain;
 
 if(LOCAL) {
@@ -26,11 +26,8 @@ function innerTemplate(object) {
 
     var timestamp = object["timeStamp"];
     timestamp = timestamp.replace("T", " ");
-    console.log(timestamp);
     timestamp = new Date(timestamp);
-    console.log(timestamp.toTimeString());
     timestamp = $.format.prettyDate(timestamp);
-    console.log(timestamp);
 
     var tags = object["tags"];
     tags = tags.split(",");
@@ -50,7 +47,7 @@ function innerTemplate(object) {
                 '</div>' +
                 '<ul class="tags list-inline">'; 
                     for(i = 0; i < tags.length; i++) {
-                        template += '<li>' + tags[i] + '</li>';
+                        template += '<li><button id="tag" class="btn">' + tags[i] + '</button></li>';
                     }
                     template += '' +
                 '</ul>' +
@@ -127,8 +124,6 @@ function likePost(id) {
     });
 }
 
-
-
 function removeAllPosts() {
     $("#listArea").children().remove();
 }
@@ -143,7 +138,7 @@ function refreshPost(object) {
     $("#listArea #" + id).html(innerTemplate(object));
 }
 
-function sendLogin(username, password) {
+function sendSignIn(username, password) {
     var creds = {
         "username": username,
         "password": password
@@ -159,6 +154,26 @@ function sendLogin(username, password) {
         success: function(data) {
             window.sessionStorage.token = data;
             window.location.href = domain;
+        }
+    });
+}
+
+function sendSignUp(name, username, password) {
+    var creds = {
+        "name": name,
+        "email": username,
+        "password": password
+    }
+    $.ajax({
+        url: domain + "/user",
+        type: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        dataType: "text",
+        data: JSON.stringify(creds),
+        success: function(data) {
+            window.location.href = domain + "/sign-in";
         }
     });
 }
@@ -181,7 +196,7 @@ function getPostsByTags(tags) {
 $(document).ready(function() {
 
     // uncomment for production
-    // refreshPosts();
+    refreshPosts();
 
 	$("#postSubmit").on("click", function() {
 		var text = $("#postTextarea").val();
@@ -202,14 +217,27 @@ $(document).ready(function() {
         likePost(id);
     });
 
-    $("#loginButton").on("click", function () {
-        var username = $("#emailInput").val();
-        var password = $("#passwordInput").val();
-        sendLogin(username, password);
-    })
+    $("#listArea").on("click", "#tag", function () {
+        var val = $(this)[0].innerText;
+        console.log("!!!!!!" + val);
+        getPostsByTags(val);
+    });
+
+    $("#signIn_Button").on("click", function () {
+        var username = $("#signIn_EmailInput").val();
+        var password = $("#signIn_PasswordInput").val();
+        sendSignIn(username, password);
+    });
+
+    $("#signUp_Button").on("click", function () {
+        var name = $("#signUp_NameInput").val();
+        var username = $("#signUp_EmailInput").val();
+        var password = $("#signUp_PasswordInput").val();
+        sendSignUp(name, username, password);
+    });
 
     $("#searchButton").on("click", function () {
         var tags = $("#searchBar").val();
         getPostsByTags(tags);
-    })
+    });
 });

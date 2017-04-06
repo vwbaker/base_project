@@ -66,7 +66,7 @@ nav.navbar {
     font-size: 2em;
 }
 
-.tags li {
+.tags button {
     font-size: .8em;
     /*color: white;*/
     color: black;
