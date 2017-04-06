@@ -1,5 +1,5 @@
 // Local debugging helper
-var LOCAL = true;
+var LOCAL = false;
 var domain;
 
 if(LOCAL) {
